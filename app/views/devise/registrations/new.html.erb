@@ -1,55 +1,34 @@
 <section class="registration">
   <div class="login-card">
-    <h2>Sign up</h2>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-      
-      <div class="field">
+
+    <% if session[:user_type] == "Volunteer"%>
+      <%= render partial: "devise/registrations/volunteer_registration", locals: { f: f } %>
+    <% elsif session[:user_type] == "Non_Profit" %>
+      <%= render partial: "devise/registrations/nonprofit_registration", locals: { f: f } %>
+    <% else %>
+    Poop
+    <% end %>
+      <!-- Non-profit fields -->
+
+
+      <!-- Common fields -->
+      <div class="common-fields">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-      
-      <div class="field">
-        <%= f.label :password %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
+
+        <%= f.label :password %><br />
         <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-      
-      <div class="field">
+          <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password" %><br />
+
         <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
       </div>
-      
-      <div class="field">
-        <%= f.label :first_name, "First Name" %><br />
-        <%= f.text_field :first_name %>
-      </div>
-      
-      <div class="field">
-        <%= f.label :last_name, "Last Name" %><br />
-        <%= f.text_field :last_name %>
-      </div>
-      
-      <div class="field">
-        <%= f.label :hours_per_week %><br />
-        <%= f.number_field :hours_per_week %>
-      </div>
-      
-      <div class="field">
-        <%= f.label :background_check %><br />
-        <%= f.check_box :background_check %>
-      </div>
-      
-      <div class="field">
-        <%= f.label :role %><br />
-        <%= f.select :role, User.roles.keys.map { |role| [role.titleize, role] }, {}, class: "form-control" %>
-      </div>
-      
-      <div class="actions">
-        <%= f.submit "Sign up" %>
-      </div>
+
+      <%= f.submit "Sign up" %>
     <% end %>
   </div>
-</section>
+ </section> 

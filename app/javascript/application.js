@@ -1,3 +1,7 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
+// Remove any existing JavaScript code in application.js
+
+// Import modules using the import map
+import { Turbo } from "@hotwired/turbo-rails"
 import "controllers"
+
+// Export statements are not needed in application.js

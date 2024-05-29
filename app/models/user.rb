@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum role: { volunteer: 0, non_profit: 1, admin: 2 }
+  enum role: { Volunteer: 0, Non_Profit: 1, Admin: 2 }
 
   # Set a default role after initializing a user
   after_initialize :set_default_role, if: :new_record?
@@ -12,7 +12,7 @@ class User < ApplicationRecord
   private
 
   def set_default_role
-    self.role ||= :volunteer
+    self.role ||= :Volunteer
   end
 
 end

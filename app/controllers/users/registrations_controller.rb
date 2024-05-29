@@ -5,9 +5,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+    session[:user_type] = params[:user_type] if %w[Volunteer Non_Profit].include?(params[:user_type])
+    @user_type = session[:user_type]
+  end
+
 
   # POST /resource
   # def create

@@ -9,6 +9,11 @@
     margin-top: 200px;
 
 }
+.dashboard-main h1 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
 
 
 .profile-card{
@@ -23,4 +28,11 @@
 
 .profile-card li {
     list-style: none;
+    padding-left: 1rem;
+}
+
+.titles {
+    margin-left: 1rem;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
 }

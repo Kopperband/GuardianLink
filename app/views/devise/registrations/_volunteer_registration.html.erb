@@ -1,0 +1,14 @@
+<div class="volunteer-fields">
+        <%= f.hidden_field :role, value: 'Volunteer' %>
+
+        <%= f.label :first_name, "First Name" %><br />
+        <%= f.text_field :first_name %><br />
+        <%= f.label :last_name, "Last Name" %><br />
+        <%= f.text_field :last_name %><br />
+        <%= f.label :linkedin, "Linkedin Profile" %><br />
+        <%= f.text_field :linkedin %><br />
+        <%= f.label :hours_per_week %><br />
+        <%= f.number_field :hours_per_week %><br />
+        <%= f.label :background_check %><br />
+        <%= f.check_box :background_check %><br />
+      </div>

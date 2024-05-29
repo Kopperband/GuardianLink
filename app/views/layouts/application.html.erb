@@ -9,6 +9,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= turbo_include_tags %>
   </head>
 
   <body>
@@ -26,14 +27,16 @@
     </div>
     <div class="links">
       <ul>
-        <li><%= link_to "Home", root_path %></li>
-
+        <% if !current_user %>
+          <li><%= link_to "Home", root_path %></li>
+        <% end %>
         <% if current_user %>
+          <li><%= link_to 'Dashboard', dashboard_path %></li>
           <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
           <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'button-to-link' %></li>
         <%else%>
           <li><%= link_to "Login", new_user_session_path %></li>
-          <li><%= link_to "Register", new_user_registration_path, method: :get %></li>
+          <li><%= link_to "Register", choose_user_type_path, method: :get %></li>
         <% end %>
       </ul>
     </div>

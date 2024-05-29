@@ -3,15 +3,15 @@
     
     <h1><%= @current_user_name %>'s Dashboard</h1>
 
-
+ 
 <!-- if statments figure out what user type is logged in and displays the opposite user type profile cards -->
-        <% if session[:user_type] == 'admin' %>
+        <% if current_user.role == 'Admin' %>
         <strong>Volunteers</strong>
-            <% @volunteers.each do |volunteer| %>
+            <% @users.each do |user| %>
                 <div class="profile-card">
-                    <li><%= volunteer.firstname %></li>
-                    <li><%= volunteer.lastname %></li>
-                    <li><%= link_to  "Linkedin", volunteer.linkedinpage %></li>
+                    <li><%= user.first_name %></li>
+                    <li><%= user.last_name %></li>
+                    <li><%= link_to  "Linkedin", user.linkedinpage %></li>
                     <% if volunteer.backgroundcheck == true%>
                         <li>Yes</li>
                     <% else %>
@@ -27,43 +27,43 @@
             <% @nonprofits.each do |nonprofit| %>
                 <div class="profile-card">
 
-                    <li><%= nonprofit.orgname %></li>
-                    <li><%= nonprofit.pocemail %>
-                    <li><%= nonprofit.areasofconcern %></li>
-                    <li><%= mail_to "#{nonprofit.pocemail}", "Contact" %></li>
+                    <li><%= nonprofit.organization_name %></li>
+                    <li><%= nonprofit.point_of_contact_email %>
+                    <li><%= nonprofit.areas_of_concern %></li>
+                    <li><%= mail_to "#{nonprofit.point_of_contact_email}", "Contact" %></li>
                 </div>
             <% end %>
 
 
 
 
-    <% elsif session[:user_type] == 'Volunteer'  %>
-        <% @nonprofits.each do |nonprofit| %>
+    <% elsif current_user.role == 'Volunteer'  %>
+        <% @users.each do |user| %>
         <div class="profile-card">
 
-            <li><%= nonprofit.orgname %></li>
-            <li><%= nonprofit.pocemail %>
-            <li><%= nonprofit.areasofconcern %></li>
-            <li><%= mail_to "#{nonprofit.pocemail}", "Contact" %></li>
+            <li><%= user.organization_name %></li>
+            <li><%= user.point_of_contact_email %>
+            <li><%= user.areas_of_concern %></li>
+            <li><%= mail_to "#{user.point_of_contact_email}", "Contact" %></li>
         </div>
         <% end %>
     
 
 
-    <% elsif session[:user_type] == 'Non Profit'  %>
-        <div class= "titles"><b>First Name</b><b>Last Name</b><b>Linkedin Page</b><b>Background Check?</b>
+    <% elsif current_user.role == 'Non_Profit'  %>
+        <div class= "titles"><b>First Name</b><b>Last Name</b><b>Linkedin Page</b><b>Background Check?</b><b>Contact</b></div>
 
-        <% @volunteers.each do |volunteer| %>
+        <% @users.each do |user| %>
             <div class="profile-card">
-                <li><%= volunteer.firstname %></li>
-                <li><%= volunteer.lastname %></li>
-                <li><%= link_to  "Linkedin", volunteer.linkedinpage %></li>
-                <% if volunteer.backgroundcheck == true%>
+                <li><%= user.first_name %></li>
+                <li><%= user.last_name %></li>
+                <li><%= link_to  "Linkedin", user.linkedin %></li>
+                <% if user.background_check == true%>
                     <li>Yes</li>
                 <% else %>
                     <li>No</li>
                 <% end %>
-                <li><%= mail_to "#{volunteer.email}", "Contact" %></li>
+                <li><%= mail_to "#{user.email}", "Contact" %></li>
 
             </div>
         <% end %>
