@@ -1,0 +1,74 @@
+<section class="outer-box">
+    <div class="dashboard-main">
+    
+    <h1><%= @current_user_name %>'s Dashboard</h1>
+
+
+<!-- if statments figure out what user type is logged in and displays the opposite user type profile cards -->
+        <% if session[:user_type] == 'admin' %>
+        <strong>Volunteers</strong>
+            <% @volunteers.each do |volunteer| %>
+                <div class="profile-card">
+                    <li><%= volunteer.firstname %></li>
+                    <li><%= volunteer.lastname %></li>
+                    <li><%= link_to  "Linkedin", volunteer.linkedinpage %></li>
+                    <% if volunteer.backgroundcheck == true%>
+                        <li>Yes</li>
+                    <% else %>
+                        <li>No</li>
+                    <% end %>
+                    <li><%= mail_to "#{volunteer.email}", "Contact" %></li>
+                    <%= button_to "Delete", volunteer_registration_path(volunteer), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+            
+                </div>
+            <% end %>
+        <strong>Organizations</strong>
+
+            <% @nonprofits.each do |nonprofit| %>
+                <div class="profile-card">
+
+                    <li><%= nonprofit.orgname %></li>
+                    <li><%= nonprofit.pocemail %>
+                    <li><%= nonprofit.areasofconcern %></li>
+                    <li><%= mail_to "#{nonprofit.pocemail}", "Contact" %></li>
+                </div>
+            <% end %>
+
+
+
+
+    <% elsif session[:user_type] == 'Volunteer'  %>
+        <% @nonprofits.each do |nonprofit| %>
+        <div class="profile-card">
+
+            <li><%= nonprofit.orgname %></li>
+            <li><%= nonprofit.pocemail %>
+            <li><%= nonprofit.areasofconcern %></li>
+            <li><%= mail_to "#{nonprofit.pocemail}", "Contact" %></li>
+        </div>
+        <% end %>
+    
+
+
+    <% elsif session[:user_type] == 'Non Profit'  %>
+        <div class= "titles"><b>First Name</b><b>Last Name</b><b>Linkedin Page</b><b>Background Check?</b>
+
+        <% @volunteers.each do |volunteer| %>
+            <div class="profile-card">
+                <li><%= volunteer.firstname %></li>
+                <li><%= volunteer.lastname %></li>
+                <li><%= link_to  "Linkedin", volunteer.linkedinpage %></li>
+                <% if volunteer.backgroundcheck == true%>
+                    <li>Yes</li>
+                <% else %>
+                    <li>No</li>
+                <% end %>
+                <li><%= mail_to "#{volunteer.email}", "Contact" %></li>
+
+            </div>
+        <% end %>
+    <% end %>
+
+    
+    </div>
+</section>

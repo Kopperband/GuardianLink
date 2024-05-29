@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GuardianLink</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  <section class="navbar">
+  <div class="logo-group">
+    <div class="logo"><%= image_tag "logo.svg" %></div>
+    <div class="who">
+    <% if current_page?(root_path) %>
+      <ul>
+      <li><%= link_to "Who What and Why", '#www' %></li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+    </div>
+    <div class="links">
+      <ul>
+        <li><%= link_to "Home", root_path %></li>
+
+        <% if current_user %>
+          <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+          <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'button-to-link' %></li>
+        <%else%>
+          <li><%= link_to "Login", new_user_session_path %></li>
+          <li><%= link_to "Register", new_user_registration_path, method: :get %></li>
+        <% end %>
+      </ul>
+    </div>
+  </section>
+  
+  <section class="non-layout">
+    <%= yield %>
+  </section>
+
+  <footer>
+    </div class="links">
+    
+    <%= link_to "Log In", new_user_session_path  %>
+  
+    <%= link_to "Who What and Why", '#www'%>
+  
+    <%= link_to "Admin", new_user_session_path %>
+    
+    <%= mail_to  "admin@guardianlink.com", "Contact Us!" %>
+    </div>
+
+    <div class="socials">
+      <i class='bx bxl-instagram-alt'></i>
+      <i class='bx bxl-facebook-circle'></i>
+      <i class='bx bxl-twitter' ></i>
+      <i class='bx bxl-reddit' ></i>
+    </div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+.outer-box {
+    height:fit-content;
+
+}
+
+.dashboard-main {
+    width:80%;
+    height:auto;
+    margin-top: 200px;
+
+}
+
+
+.profile-card{
+    margin: 2rem;
+    border:1px solid var(--main-blue-color);
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    justify-content: center;
+}
+
+
+
+.profile-card li {
+    list-style: none;
+}
