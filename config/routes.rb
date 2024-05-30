@@ -18,5 +18,13 @@ Rails.application.routes.draw do
 
   delete '/users', to: 'users/registrations#destroy'
 
+  resources :pages do
+    collection do
+      patch :change_role
+      post :reset_password
+    end
+  end
+
+  resources :us
   # Other routes...
 end

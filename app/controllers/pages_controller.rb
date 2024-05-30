@@ -1,10 +1,7 @@
 class PagesController < ApplicationController
+  include UserActions
 
   def Index
-
-  end
-
-  def choose_user_type
 
   end
 
@@ -29,8 +26,35 @@ class PagesController < ApplicationController
     end
   end
 
+  def connect_mailer
+    @parameters = Model.get_parameters
+
+  end
+
   def user_profile
 
   end
+
+  def change_role
+    if current_user.role == 'Admin' # Ensure only admins can change roles
+      User.where(id: params[:user_ids]).update_all(role: 'Admin')
+      redirect_to dashboard_path, notice: "Users' roles updated successfully."
+    else
+      redirect_to dashboard_path, alert: "You don't have permission to perform this action."
+    end
+  end
+
+  def reset_password
+      user = User.find(params[:user_id])
+      user.send_reset_password_instructions
+      redirect_to users_path, notice: "Password reset email sent to #{user.email}"
+  end
+
+  def authenticate_admin!
+    unless current_user && current_user.role == 'Admin'
+    end
+  end
+
+
 
 end

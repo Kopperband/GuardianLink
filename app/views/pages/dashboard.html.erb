@@ -1,81 +1,16 @@
 <section class="outer-box">
-    <div class="dashboard-main">
-    
+  <div class="dashboard-main">
     <h1><%= @current_user_name %>'s Dashboard</h1>
 
- 
-<!-- if statments figure out what user type is logged in and displays the opposite user type profile cards -->
-        <% if current_user.role == 'Admin' %>
-        <strong>Volunteers</strong>
-            <% @users.each do |user| %>
-                <% if user.role == 'Volunteer'%>
-                    <div class="profile-card profile-card-admin">
-                        <li><%= user.role %>
-                        <li><%= user.first_name %></li>
-                        <li><%= user.last_name %></li>
-                        <li><%= user.email %></li>
-                        <li><%= link_to  "Linkedin", user.linkedin %></li>
-                        <% if user.background_check == true%>
-                            <li>Yes</li>
-                        <% else %>
-                            <li>No</li>
-                        <% end %>
-                        <li><%= mail_to "#{user.email}", "Contact" %></li>
-                        <%= button_to "Delete", user_registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-                    </div>
-                <% end %>
-            <% end %>
-        <strong>Organizations</strong>
+    <!-- if statements figure out what user type is logged in and displays the opposite user type profile cards -->
+    <% if current_user.role == "Admin" %>
+      <%= render partial: "pages/admin_dashboard" %>
 
-            <% @users.each do |nonprofit| %>
-                <% if nonprofit.role == 'Non_Profit'%>
-                    <div class="profile-card">
-                        <li><%= nonprofit.role %>
-                        <li><%= nonprofit.organization_name %></li>
-                        <li><%= nonprofit.email %>
-                        <li><%= nonprofit.areas_of_concern %></li>
-                        <li><%= mail_to "#{nonprofit.point_of_contact_email}", "Contact" %></li>
-                        <%= button_to "Delete", user_registration_path(nonprofit), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-
-                    </div>
-                <% end %>
-            <% end %>
-
-
-
-
-    <% elsif current_user.role == 'Volunteer'  %>
-        <% @users.each do |user| %>
-        <div class="profile-card">
-
-            <li><%= user.organization_name %></li>
-            <li><%= user.point_of_contact_email %>
-            <li><%= user.areas_of_concern %></li>
-            <li><%= mail_to "#{user.point_of_contact_email}", "Contact" %></li>
-        </div>
-        <% end %>
-    
-
-
-    <% elsif current_user.role == 'Non_Profit'  %>
-        <div class= "titles"><b>First Name</b><b>Last Name</b><b>Linkedin Page</b><b>Background Check?</b><b>Contact</b></div>
-
-        <% @users.each do |user| %>
-            <div class="profile-card">
-                <li><%= user.first_name %></li>
-                <li><%= user.last_name %></li>
-                <li><%= link_to  "Linkedin", user.linkedin %></li>
-                <% if user.background_check == true%>
-                    <li>Yes</li>
-                <% else %>
-                    <li>No</li>
-                <% end %>
-                <li><%= mail_to "#{user.email}", "Contact" %></li>
-
-            </div>
-        <% end %>
+    <% elsif current_user.role == 'Volunteer' %>
+        <%= render partial: "pages/volunteer_dashboard" %>
+      
+    <% elsif current_user.role == 'Non_Profit' %>
+        <%= render partial: "pages/nonprofit_dashboard" %>
     <% end %>
-
-    
-    </div>
+  </div>
 </section>

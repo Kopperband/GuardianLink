@@ -1,0 +1,17 @@
+<h1> Volunteers</h1>
+<div class= "titles"><b>First Name</b><b>Last Name</b><b>Linkedin Page</b><b>Background Check?</b><b>Contact</b></div>
+  <% @users.each do |user| %>
+    <% if user.role == "Volunteer" %>
+      <div class="profile-card">
+        <li><%= user.first_name %></li>
+        <li><%= user.last_name %></li>
+        <li><%= link_to "Linkedin", user.linkedin %></li>
+        <% if user.background_check == true %>
+          <li>Yes</li>
+        <% else %>
+          <li>No</li>
+        <% end %>
+        <li><%= mail_to "#{user.email}", "Contact", subject: "#{current_user.organization_name}Wants to Connect!", body: "Hello!\n\nWe believe that you can help our organization with its cybersecurity needs.\n\n Please contact me at #{current_user.email} so we can start working together!" %></li>
+      </div>
+    <% end %>
+  <% end %>

@@ -18,17 +18,21 @@
 
 .profile-card{
     margin: 2rem;
-    border:1px solid var(--main-blue-color);
-    display:grid;
+    border:5px solid var(--main-blue-color);
+    display:flex;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
     justify-content: center;
+    background-color: green;
 }
-
-.profile-card-admin {
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+.admin {
+    background-color: red;
 }
-
+.volunteer{
+    background-color: blue;
+}
+.nonprofit {
+    background-color: green;
+}
 
 
 .profile-card li {

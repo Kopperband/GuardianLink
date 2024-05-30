@@ -5,9 +5,9 @@ User.destroy_all
 
 # Create sample users
 User.create!(
-  email: "user1@example.com",
-  password: "password1", # Use `password` instead of `encrypted_password`
-  password_confirmation: "password1",
+  email: "nonprofit@example.com",
+  password: "password", # Use `password` instead of `encrypted_password`
+  password_confirmation: "password",
   reset_password_token: nil,
   reset_password_sent_at: nil,
   remember_created_at: nil,
@@ -25,9 +25,9 @@ User.create!(
 )
 
 User.create!(
-  email: "user2@example.com",
-  password: "password2",
-  password_confirmation: "password2",
+  email: "admin@example.com",
+  password: "password",
+  password_confirmation: "password",
   reset_password_token: nil,
   reset_password_sent_at: nil,
   remember_created_at: nil,
@@ -45,9 +45,9 @@ User.create!(
 )
 
 User.create!(
-  email: "user3@example.com",
-  password: "password3",
-  password_confirmation: "password3",
+  email: "volunteer@example.com",
+  password: "password",
+  password_confirmation: "password",
   reset_password_token: nil,
   reset_password_sent_at: nil,
   remember_created_at: nil,

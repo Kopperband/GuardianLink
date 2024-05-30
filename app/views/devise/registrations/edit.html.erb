@@ -14,6 +14,22 @@
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
 
+      <% if current_user.role == "Volunteer" %>
+        <%= f.label :hours_per_week %><br />
+        <%= f.number_field :hours_per_week %><br />
+        <%= f.label :background_check %><br />
+        <%= f.check_box :background_check %><br />
+      <% end %>
+
+      <% if current_user.role == "Non_Profit" %>
+        <%= f.label :organization_name, "Organization Name" %><br />
+        <%= f.text_field :organization_name %><br />
+        <%= f.label :point_of_contact_email, "Point Of Contact Email" %><br />
+        <%= f.text_field :point_of_contact_email %><br />
+        <%= f.label :areas_of_concern, "Description of Concerns" %><br />
+        <%= f.text_area :areas_of_concern %><br />
+      <% end %>
+
       <div class="field">
         <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
         <%= f.password_field :password, autocomplete: "new-password" %>
@@ -34,14 +50,17 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "Update" %>
+        <%= f.submit "Update", class: 'button' %>
       </div>
     <% end %>
 
     <h3>Delete Account</h3>
 
-    <div><%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'button' %></div>
-
+    <% if User.where(role: 'Admin').count > 1 %>
+      <div><%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'button' %></div>
+    <% else %>
+      <strong>Cannot delete account there needs to be a minimum of one admin account active at all times </strong>
+    <% end %>
     <%= link_to "Back", :back %>
   </div>
 </section>
