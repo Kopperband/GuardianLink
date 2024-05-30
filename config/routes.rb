@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+
+
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
     delete 'logout', to: 'devise/sessions#destroy'
@@ -13,6 +15,8 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard'
   get 'choose_user_type', to: 'pages#choose_user_type', as: 'choose_user_type'
   get '/register/:user_type', to: 'users/registrations#new', as: 'register'
+
+  delete '/users', to: 'users/registrations#destroy'
 
   # Other routes...
 end

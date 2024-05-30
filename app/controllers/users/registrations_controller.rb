@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :set_user_type, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
@@ -11,6 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user_type = session[:user_type]
   end
 
+  def set_user_type
+    session[:user_type] = params[:user_type] if params[:user_type].present?
+  end
 
   # POST /resource
   # def create
@@ -28,9 +32,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    @user = User.find_by(params[:id])
+    if @user
+      @user.destroy
+      redirect_to dashboard_path, notice: 'User was successfully deleted.'
+    else
+      redirect_to dashboard_path, alert: 'User not found.'
+    end
+  end
+
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

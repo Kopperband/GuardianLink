@@ -24,6 +24,11 @@
     justify-content: center;
 }
 
+.profile-card-admin {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+}
+
 
 
 .profile-card li {

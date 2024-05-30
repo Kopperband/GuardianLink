@@ -8,30 +8,37 @@
         <% if current_user.role == 'Admin' %>
         <strong>Volunteers</strong>
             <% @users.each do |user| %>
-                <div class="profile-card">
-                    <li><%= user.first_name %></li>
-                    <li><%= user.last_name %></li>
-                    <li><%= link_to  "Linkedin", user.linkedinpage %></li>
-                    <% if volunteer.backgroundcheck == true%>
-                        <li>Yes</li>
-                    <% else %>
-                        <li>No</li>
-                    <% end %>
-                    <li><%= mail_to "#{volunteer.email}", "Contact" %></li>
-                    <%= button_to "Delete", volunteer_registration_path(volunteer), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-            
-                </div>
+                <% if user.role == 'Volunteer'%>
+                    <div class="profile-card profile-card-admin">
+                        <li><%= user.role %>
+                        <li><%= user.first_name %></li>
+                        <li><%= user.last_name %></li>
+                        <li><%= user.email %></li>
+                        <li><%= link_to  "Linkedin", user.linkedin %></li>
+                        <% if user.background_check == true%>
+                            <li>Yes</li>
+                        <% else %>
+                            <li>No</li>
+                        <% end %>
+                        <li><%= mail_to "#{user.email}", "Contact" %></li>
+                        <%= button_to "Delete", user_registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+                    </div>
+                <% end %>
             <% end %>
         <strong>Organizations</strong>
 
-            <% @nonprofits.each do |nonprofit| %>
-                <div class="profile-card">
+            <% @users.each do |nonprofit| %>
+                <% if nonprofit.role == 'Non_Profit'%>
+                    <div class="profile-card">
+                        <li><%= nonprofit.role %>
+                        <li><%= nonprofit.organization_name %></li>
+                        <li><%= nonprofit.email %>
+                        <li><%= nonprofit.areas_of_concern %></li>
+                        <li><%= mail_to "#{nonprofit.point_of_contact_email}", "Contact" %></li>
+                        <%= button_to "Delete", user_registration_path(nonprofit), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
 
-                    <li><%= nonprofit.organization_name %></li>
-                    <li><%= nonprofit.point_of_contact_email %>
-                    <li><%= nonprofit.areas_of_concern %></li>
-                    <li><%= mail_to "#{nonprofit.point_of_contact_email}", "Contact" %></li>
-                </div>
+                    </div>
+                <% end %>
             <% end %>
 
 

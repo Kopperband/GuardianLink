@@ -15,7 +15,7 @@ class PagesController < ApplicationController
       if current_user.role == 'Admin'
         @nonprofits = User.where(role: :nonprofit)
         @volunteers = User.where(role: :volunteer)
-        @current_user_name = current_user.hours_per_week
+        @current_user_name = current_user.first_name
       elsif current_user.role == 'Volunteer'
         @nonprofits = User.where(role: :nonprofit)
         @current_user_name = current_user.first_name
