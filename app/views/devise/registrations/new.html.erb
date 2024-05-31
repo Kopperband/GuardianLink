@@ -3,7 +3,22 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-    <% if session[:user_type] == "Volunteer"%>
+  <!-- Debugging output -->
+<% if resource.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(resource.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+          </ul>
+  </div>
+<% end %>
+
+    <% if session[:user_type] == 'Admin'%>
+      
+      <%= render partial: "devise/registrations/admin_registration", locals: { f: f } %>    
+    <% elsif session[:user_type] == "Volunteer"%>
       <%= render partial: "devise/registrations/volunteer_registration", locals: { f: f } %>
     <% elsif session[:user_type] == "Non_Profit" %>
       <%= render partial: "devise/registrations/nonprofit_registration", locals: { f: f } %>
@@ -28,7 +43,9 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
       </div>
 
-      <%= f.submit "Sign up", class:'button' %>
+
+        <%= f.submit "Sign up", class:'button' %>
+
     <% end %>
   </div>
  </section> 

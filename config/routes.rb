@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     collection do
       patch :change_role
       post :reset_password
+      post :admin_create
     end
   end
 

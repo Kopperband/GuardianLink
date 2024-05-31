@@ -1,12 +1,18 @@
 .outer-box {
+    display:flex;
+    flex-direction: column;
     height:fit-content;
+    justify-content: center;
 
 }
 
 .dashboard-main {
-    width:80%;
+    display:flex;
+    flex-direction: column;
+    width:90%;
     height:auto;
     margin-top: 200px;
+    align-items: center;
 
 }
 .dashboard-main h1 {
@@ -14,34 +20,54 @@
     margin-bottom: 3rem;
     font-size: 2rem;
 }
-
-
-.profile-card{
-    margin: 2rem;
-    border:5px solid var(--main-blue-color);
+.admin-dash {
     display:flex;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    flex-direction: column;
+    width:1600px;
     justify-content: center;
-    background-color: green;
-}
-.admin {
-    background-color: red;
-}
-.volunteer{
-    background-color: blue;
-}
-.nonprofit {
-    background-color: green;
 }
 
 
-.profile-card li {
+.titles{
+    width:1600px;
+    border:5px solid var(--main-blue-color);
+    display:grid;
+    justify-content: center;
+}
+
+div .admin {
+    background-color: green;
+    grid-template-columns: repeat(9, 1fr);
+    justify-content: center;
+}
+div .volunteer{
+    grid-template-columns: repeat(10, 1fr);
+}
+div .nonprofit {
+    grid-template-columns: repeat(8, 1fr);
+    background-color: yellow;
+}
+
+
+
+ li {
+    
     list-style: none;
-    padding-left: 1rem;
+    text-align: center;
+    margin:0.5rem 1rem 0.5rem 1rem;
 }
+
+li strong {
+    font-size: 0.8rem;
+}
+
+
 
 .titles {
-    margin-left: 1rem;
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-columns: repeat(9, 1fr) ;
+}
+.titles b {
+    font-size: 0.8rem;
+    text-align: center;
 }

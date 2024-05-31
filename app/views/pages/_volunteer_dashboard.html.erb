@@ -1,7 +1,7 @@
   <h2> Organizations </h2>
   <% @users.each do |user| %>
     <% if user.role == "Non_Profit" %>
-      <div class="profile-card">
+      <div class="profile-card nonprofit">
         <li><%= user.organization_name %></li>
         <li><%= user.point_of_contact_email %></li>
         <li><%= user.areas_of_concern %></li>

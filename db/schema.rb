@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_29_115647) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_30_215917) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_29_115647) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
-    t.boolean "background_check"
+    t.boolean "background_check", default: false
     t.integer "hours_per_week"
     t.string "point_of_contact_email"
     t.string "organization_name"

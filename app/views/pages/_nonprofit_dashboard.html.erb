@@ -2,7 +2,7 @@
 <div class= "titles"><b>First Name</b><b>Last Name</b><b>Linkedin Page</b><b>Background Check?</b><b>Contact</b></div>
   <% @users.each do |user| %>
     <% if user.role == "Volunteer" %>
-      <div class="profile-card">
+      <div class="profile-card volunteer">
         <li><%= user.first_name %></li>
         <li><%= user.last_name %></li>
         <li><%= link_to "Linkedin", user.linkedin %></li>

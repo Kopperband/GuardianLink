@@ -1,0 +1,2 @@
+# app/views/users/registrations/create.turbo_stream.erb
+<%= turbo_stream.append 'dashboard', partial: 'users/user', locals: { user: @user } %>
