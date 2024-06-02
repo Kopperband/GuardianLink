@@ -1,11 +1,12 @@
 <strong>Admins</strong>
 <div class="admin-dash">
-  <div class= "titles admin"><b>User Type</b><b>First Name</b><b>Last Name</b><b>Email</b><b>Linkedin Page</b>
-  <b>Background Check?</b><b>Contact</b><b>Reset Password</b><b>Delete Account</b>
+  <%= link_to "New Admin", admin_registration_path %><br />
+  <div class="titles admin">
+    <h5>User Type</h5><h5>First Name</h5><h5>Last Name</h5><h5>Email</h5><h5>Linkedin Page</h5>
+    <h5>Background Check?</h5><h5>Contact</h5><h5>Reset Password</h5><h5>Delete Account</h5><h5>Change User Type</h5>
 
-  <% @users.each do |user| %>
-    <% if user.role == 'Admin' %>
-      
+    <% @users.each do |user| %>
+      <% if user.role == 'Admin' %>
         <li><%= user.role %></li>
         <li><%= user.first_name %></li>
         <li><%= user.last_name %></li>
@@ -17,86 +18,97 @@
           <li>No</li>
         <% end %>
         <li><%= mail_to "#{user.email}", "Contact", subject: "#{current_user.first_name}Wants to Connect!" %></li>
-        <li><%= form_with url: reset_password_pages_path, method: :post do |f| %>
-          <%= f.hidden_field :user_id, value: user.id %>
-          <%= f.submit "Reset Password", class: "btn btn-primary" %>
-        <% end %></li>
+        <li>
+          <%= form_with url: reset_password_pages_path, method: :post do |f| %>
+            <%= f.hidden_field :user_id, value: user.id %>
+            <%= f.submit "Reset Password", class: "btn btn-primary" %>
+          <% end %>
+        </li>
         <% if User.where(role: 'Admin').count > 1 %>
-          <li><%= button_to "Delete", registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></li>
+          <li>
+            <%= button_to "Delete", registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+          </li>
+          <% if user.id != current_user.id %>
+            <%= form_tag(change_role_pages_path, method: :patch) do %>
+              <li class="admin-box">
+                <%= hidden_field_tag "user_ids[]", user.id %>
+                <%= select_tag "role", options_for_select(['Volunteer', 'Non_Profit']), class: "role-select" %>
+                <%= submit_tag "Change Role" %>
+              </li>
+            <% end %>
+          <% else %>
+            <li>Current User</li>
+          <% end %>
         <% else %>
           <li><strong>Last Admin Account </strong></li>
         <% end %>
-        <% if user.role != 'Admin' %>
-          <%= form_tag(change_role_pages_path, method: :patch) do %>
-            <li class="user">
-              <%= check_box_tag "user_ids[]", user.id %>
-              Make Admin?
-            </li>
-            <%= submit_tag "Submit" %>
-          <% end %>
-        <% end %>
-      
+      <% end %>
     <% end %>
-  <% end %>
   </div>
 </div>
-<%= link_to "New Admin", choose_user_type_path %><br />
 
 <strong>Volunteers</strong>
-<div class= "titles volunteer"><b>User Type</b><b>First Name</b><b>Last Name</b><b>Email</b><b>Linkedin Page</b>
-  <b>Background Check?</b><b>Contact</b><b>Reset Password</b><b>Delete Account</b><b>Make Admin</b>
+<div class="titles volunteer">
+  <h5>User Type</h5><h5>First Name</h5><h5>Last Name</h5><h5>Email</h5><h5>Linkedin Page</h5>
+  <h5>Background Check?</h5><h5>Contact</h5><h5>Reset Password</h5><h5>Delete Account</h5><h5>Make Admin</h5>
   <% @users.each do |user| %>
     <% if user.role == 'Volunteer' %>
-        <li><%= user.role %></li>
-        <li><%= user.first_name %></li>
-        <li><%= user.last_name %></li>
-        <li><%= user.email %></li>
-        <li><%= link_to "Linkedin", user.linkedin %></li>
-        <% if user.background_check == true %>
-          <li>Yes</li>
-        <% else %>
-          <li>No</li>
-        <% end %>
-        <li><%= mail_to "#{user.email}", "Contact", subject: "#{current_user.first_name}Wants to Connect!" %></li>
+      <li><%= user.role %></li>
+      <li><%= user.first_name %></li>
+      <li><%= user.last_name %></li>
+      <li><%= user.email %></li>
+      <li><%= link_to "Linkedin", user.linkedin %></li>
+      <% if user.background_check == true %>
+        <li>Yes</li>
+      <% else %>
+        <li>No</li>
+      <% end %>
+      <li><%= mail_to "#{user.email}", "Contact", subject: "#{current_user.first_name}Wants to Connect!" %></li>
+      <li>
         <%= form_with url: reset_password_pages_path, method: :post do |f| %>
           <%= f.hidden_field :user_id, value: user.id %>
-          <li><%= f.submit "Reset Password", class: "btn btn-primary" %></li>
+          <%= f.submit "Reset Password", class: "btn btn-primary" %>
         <% end %>
-        <li><%= button_to "Delete", user_registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></li>
-        <%= form_tag(change_role_pages_path, method: :patch) do %>
+      </li>
+      <li>
+        <%= button_to "Delete", user_registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+      </li>
+      <%= form_tag(change_role_pages_path, method: :patch) do %>
         <li class="admin-box">
-            <%= check_box_tag "user_ids[]", user.id %>
-            <%= submit_tag "Submit" %>
-          </li>
-        <% end %>
-     
+          <%= hidden_field_tag "user_ids[]", user.id %>
+          <%= select_tag "role", options_for_select(['Admin', 'Non_Profit']), class: "role-select" %>
+          <%= submit_tag "Change Role" %>
+        </li>
+      <% end %>
     <% end %>
   <% end %>
 </div>
 
 <strong>Organizations</strong>
-  <div class= "titles nonprofit"><b>User Type</b><b>Organization</b><b>Email</b>
-  <b>Background Check?</b><b>Contact</b><b>Reset Password</b><b>Delete Account</b><b>Make Admin</b>
+<div class="titles nonprofit">
+  <h5>User Type</h5><h5>Organization</h5><h5>Email</h5>
+  <h5>Areas of Concern</h5><h5>Contact</h5><h5>Reset Password</h5><h5>Delete Account</h5><h5>Make Admin</h5>
   <% @users.each do |nonprofit| %>
     <% if nonprofit.role == 'Non_Profit' %>
-      
-        <li><%= nonprofit.role %></li>
-        <li><%= nonprofit.organization_name %></li>
-        <li><%= nonprofit.email %></li>
-        <li><%= nonprofit.areas_of_concern %></li>
-        <li><%= mail_to "#{nonprofit.point_of_contact_email}", "Contact", subject: "#{current_user.first_name}Wants to Connect!" %></li>
-          <%= form_with url: reset_password_pages_path, method: :post do |f| %>
-            <%= f.hidden_field :user_id, value: nonprofit.id %>
-            <li><%= f.submit "Reset Password", class: "btn btn-primary" %></li>
-          <% end %>
-        <li><%= button_to "Delete", user_registration_path(nonprofit), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></li>
-        <%= form_tag(change_role_pages_path, method: :patch) do %>
-          <li class="admin-box">
-            <%= check_box_tag "user_ids[]", nonprofit.id %>
-            <%= submit_tag "Submit" %>
-          </li>
-        <% end %>
-      
+      <li><%= nonprofit.role %></li>
+      <li><%= nonprofit.organization_name %></li>
+      <li><%= nonprofit.email %></li>
+      <li><%= nonprofit.areas_of_concern %></li>
+      <li><%= mail_to "#{nonprofit.point_of_contact_email}", "Contact", subject: "#{current_user.first_name}Wants to Connect!" %></li>
+      <%= form_with url: reset_password_pages_path, method: :post do |f| %>
+        <%= f.hidden_field :user_id, value: nonprofit.id %>
+        <li><%= f.submit "Reset Password", class: "btn btn-primary" %></li>
+      <% end %>
+      <li>
+        <%= button_to "Delete", user_registration_path(nonprofit), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+      </li>
+      <%= form_tag(change_role_pages_path, method: :patch) do %>
+        <li class="admin-box">
+          <%= hidden_field_tag "user_ids[]", nonprofit.id %>
+          <%= select_tag "role", options_for_select(['Admin', 'Volunteer']), class: "role-select" %>
+          <%= submit_tag "Change Role" %>
+        </li>
+      <% end %>
     <% end %>
   <% end %>
 </div>

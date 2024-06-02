@@ -1,0 +1,41 @@
+<section class="registration">
+  <div class="login-card">
+    <% if user_signed_in? %>
+      <%= form_for(@admin_create, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: @admin_create %>
+        <h1>Admin Sign Up</h1>
+
+        <%= f.hidden_field :role, value: 'Admin' %>
+
+        <%= f.label :first_name, "First Name" %><br />
+        <%= f.text_field :first_name %><br />
+
+        <%= f.label :last_name, "Last Name" %><br />
+        <%= f.text_field :last_name %><br />
+
+        <%= f.label :background_check %><br />
+        <%= f.check_box :background_check %><br />
+
+        <div class="common-fields">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
+
+          <%= f.label :password %><br />
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password" %><br />
+
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
+        </div>
+
+        
+        <%= f.submit "Sign up", class:'button' %>
+      <% end %>
+    <% else %>
+    <h1> You do not have permission to access this page! </h1>
+    <%= link_to "Register", choose_user_type_path %>
+    <% end %>
+  </div>
+</section>

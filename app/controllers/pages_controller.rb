@@ -5,6 +5,11 @@ class PagesController < ApplicationController
 
   end
 
+  def new
+    @admin_create = User.new
+  end
+
+
   def dashboard
     @users = User.all
 
@@ -25,24 +30,25 @@ class PagesController < ApplicationController
       redirect_to root_path, alert: "You need to sign in to access this page."
     end
   end
-
-  def connect_mailer
-    @parameters = Model.get_parameters
+  def admin_registration
 
   end
 
-  def user_profile
-
-  end
 
   def change_role
     if current_user.role == 'Admin' # Ensure only admins can change roles
-      User.where(id: params[:user_ids]).update_all(role: 'Admin')
-      redirect_to dashboard_path, notice: "Users' roles updated successfully."
+      role = params[:role]
+      if role.present? && ['Admin', 'Volunteer', 'Non_Profit'].include?(role)
+        User.where(id: params[:user_ids]).update_all(role: role)
+        redirect_to dashboard_path, alert: "Users' roles updated successfully."
+      else
+        redirect_to dashboard_path, alert: "Invalid role selected."
+      end
     else
       redirect_to dashboard_path, alert: "You don't have permission to perform this action."
     end
   end
+
 
   def reset_password
       user = User.find(params[:user_id])

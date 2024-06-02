@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
     delete 'logout', to: 'devise/sessions#destroy'
+    get 'admin_registration', to: 'users/registrations#admin_registration', as: 'admin_registration'
   end
 
   root to: 'pages#index'

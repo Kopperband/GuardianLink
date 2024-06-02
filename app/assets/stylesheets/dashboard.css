@@ -31,21 +31,29 @@
 .titles{
     width:1600px;
     border:5px solid var(--main-blue-color);
+    border-radius: 15px;
     display:grid;
     justify-content: center;
 }
+.titles h5 {
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+}
 
 div .admin {
-    background-color: green;
-    grid-template-columns: repeat(9, 1fr);
+    background-color: var(--main-red-color);
+    grid-template-columns: repeat(10, 1fr);
     justify-content: center;
 }
 div .volunteer{
+    background-color: var(--main-red-color);
     grid-template-columns: repeat(10, 1fr);
 }
 div .nonprofit {
     grid-template-columns: repeat(8, 1fr);
-    background-color: yellow;
+    background-color: var(--main-red-color);
+    margin-bottom: 3rem;
 }
 
 
@@ -61,13 +69,14 @@ li strong {
     font-size: 0.8rem;
 }
 
+li a {
+    text-decoration: none;
+    color: var(--secondary-link-color)
+}
+
 
 
 .titles {
     display:grid;
     grid-template-columns: repeat(9, 1fr) ;
-}
-.titles b {
-    font-size: 0.8rem;
-    text-align: center;
 }
