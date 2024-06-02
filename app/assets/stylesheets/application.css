@@ -1,9 +1,9 @@
 
-@import url('login.css');
-@import url('home.css');
-@import url('dashboard.css');
+@import url("login.css");
+@import url("home.css");
+@import url("dashboard.css");
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit&display=swap");
 
 
 :root {
@@ -17,7 +17,7 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-family: 'montserrat';
+    font-family: "montserrat";
 }
 
 body {

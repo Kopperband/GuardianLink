@@ -1,0 +1,9 @@
+{
+  "ruby.lint": {
+    "rubocop": true
+  },
+  "editor.formatOnSave": true,
+  "[ruby]": {
+    "editor.defaultFormatter": "rebornix.Ruby"
+  }
+}
