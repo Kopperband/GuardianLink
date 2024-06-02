@@ -1,0 +1,34 @@
+.registration {
+  padding-top: 4rem;
+}
+
+.choose-user-type {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.choose-user-type h1 {
+  font-size: xx-large;
+  font-weight: 300;
+}
+.choose-user-type .links {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.choose-user-type .links a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: var(--secondary-link-color);
+  transition: color 0s ease-in-out;
+}
+
+.choose-user-type .links a:hover {
+  color: var(--main-red-color);
+}

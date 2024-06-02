@@ -11,6 +11,8 @@
         <%= f.text_field :linkedin %><br />
         <%= f.label :hours_per_week %><br />
         <%= f.number_field :hours_per_week %><br />
-        <%= f.label :background_check %><br />
-        <%= f.check_box :background_check %><br />
-      </div>
+        <div class="div-bg-check">
+        <%= f.check_box :background_check %>
+        <%= f.label :background_check, class: "bgcheck" %>
+        </div>
+</div>

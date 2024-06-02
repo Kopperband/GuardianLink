@@ -1,82 +1,80 @@
 .outer-box {
-    display:flex;
-    flex-direction: column;
-    height:fit-content;
-    justify-content: center;
-
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  justify-content: center;
 }
 
 .dashboard-main {
-    display:flex;
-    flex-direction: column;
-    width:90%;
-    height:auto;
-    margin-top: 200px;
-    align-items: center;
-
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: auto;
+  margin-top: 200px;
+  align-items: center;
 }
 .dashboard-main h1 {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
 }
 .admin-dash {
-    display:flex;
-    flex-direction: column;
-    width:1600px;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 1600px;
+  justify-content: center;
 }
 
-
-.titles{
-    width:1600px;
-    border:5px solid var(--main-blue-color);
-    border-radius: 15px;
-    display:grid;
-    justify-content: center;
+.titles {
+  width: 1600px;
+  border: 5px solid var(--main-blue-color);
+  border-radius: 15px;
+  display: grid;
+  justify-content: center;
 }
 .titles h5 {
-    font-size: 1rem;
-    margin-top: 1rem;
-    text-align: center;
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 div .admin {
-    background-color: var(--main-red-color);
-    grid-template-columns: repeat(10, 1fr);
-    justify-content: center;
+  background-color: var(--main-red-color);
+  grid-template-columns: repeat(10, 1fr);
+  justify-content: center;
 }
-div .volunteer{
-    background-color: var(--main-red-color);
-    grid-template-columns: repeat(10, 1fr);
+div .volunteer {
+  background-color: var(--main-red-color);
+  grid-template-columns: repeat(10, 1fr);
 }
 div .nonprofit {
-    grid-template-columns: repeat(8, 1fr);
-    background-color: var(--main-red-color);
-    margin-bottom: 3rem;
+  grid-template-columns: repeat(8, 1fr);
+  background-color: var(--main-red-color);
+  margin-bottom: 3rem;
 }
 
-
-
- li {
-    
-    list-style: none;
-    text-align: center;
-    margin:0.5rem 1rem 0.5rem 1rem;
+li {
+  list-style: none;
+  text-align: center;
+  margin: 0.5rem 1rem 0.5rem 1rem;
 }
 
 li strong {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 li a {
-    text-decoration: none;
-    color: var(--secondary-link-color)
+  text-decoration: none;
+  color: var(--main-bg-color);
 }
 
-
-
 .titles {
-    display:grid;
-    grid-template-columns: repeat(9, 1fr) ;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+}
+
+.dashboard-main li input,
+.dashboard-main li button {
+  background-color: var(--main-blue-color);
+  color: var(--main-bg-color);
 }
