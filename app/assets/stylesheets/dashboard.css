@@ -21,38 +21,46 @@
   font-size: 2rem;
 }
 
+.new-admin {
+  text-decoration: none;
+  color: var(--main-blue-color);
+  font-weight: 600;
+  border: 1px solid var(--main-red-color);
+  border-radius: 5px;
+  padding: 10px;
+}
+
 .titles {
   width: 95%;
   border: 5px solid var(--main-blue-color);
   border-radius: 15px;
-  display: grid;
-  grid-auto-flow: dense;
+
   justify-content: center;
 }
 .titles h5 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-top: 1rem;
   text-align: center;
 }
+.dashboard-main .grid-card {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(9, 11%);
 
-div .admin {
-  background-color: var(--main-red-color);
-  grid-template-columns: repeat(auto-fill, minmax(10, 1fr));
+  width: 100%;
 }
-div .volunteer {
+
+div .user-card {
   background-color: var(--main-red-color);
-  grid-template-columns: repeat(10, 1fr);
-}
-div .nonprofit {
-  grid-template-columns: repeat(8, 1fr);
-  background-color: var(--main-red-color);
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(9, 1fr));
 }
 
 li {
   list-style: none;
   text-align: center;
   margin: 0.5rem 1rem 0.5rem 1rem;
+  font-size: 0.8rem;
+  padding: 0.5rem;
 }
 
 li strong {
@@ -62,11 +70,7 @@ li strong {
 li a {
   text-decoration: none;
   color: var(--main-bg-color);
-}
-
-.titles {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  cursor: pointer;
 }
 
 .dashboard-main li input,
@@ -75,8 +79,21 @@ li a {
   color: var(--main-bg-color);
 }
 
-.line-break {
-  height: 1px;
+#current-user {
+  color: rgb(67, 227, 67);
+}
+
+.group .btn {
+  background-color: var(--main-red-color);
+  color: var(--main-blue-color);
+  border: none;
+  cursor: pointer;
+}
+
+.line {
   width: 100%;
-  border: 3px solid black;
+  border: 1px solid var(--main-blue-color);
+}
+.last-card {
+  margin-bottom: 2rem;
 }

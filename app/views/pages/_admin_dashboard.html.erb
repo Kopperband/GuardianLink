@@ -1,9 +1,10 @@
+<%= link_to "Create Admin Account", admin_registration_path, class:"new-admin" %><br />
+
 <strong>Admins</strong>
-  <%= link_to "New Admin", admin_registration_path %><br />
-  <div class="titles admin">
-    
-    <% @users.each do |user| %>
-      <% if user.role == 'Admin' %>
+<div class="titles user-card">
+  <% @users.each do |user| %>
+    <% if user.role == 'Admin' %>
+      <div class="grid-card">
         <div class="group user-type">
           <h5>User Type</h5>
           <li><%= user.role %></li>
@@ -18,7 +19,7 @@
         </div>
         <div class="group">
           <h5>Email</h5>
-          <li><%= user.email %></li>
+      <li><%= mail_to user.email, "Contact" %></li>
         </div>
         <div class="group user-type">
           <h5>Linkedin Page</h5>
@@ -32,13 +33,12 @@
             <li>No</li>
           <% end %>
         </div>
-
         <div class="group">
           <h5>Reset Password</h5>
           <li>
             <%= form_with url: reset_password_pages_path, method: :post do |f| %>
               <%= f.hidden_field :user_id, value: user.id %>
-              <%= f.submit "Reset Password", class: "btn btn-primary" %>
+              <%= f.submit "Reset Password", class: "btn btn-primary",data: { confirm: "Confirm Password Reset?", turbo_confirm: "Confirm Password Reset?" } %>
             <% end %>
           </li>
         </div>
@@ -46,96 +46,167 @@
           <h5>Delete Account</h5>
           <% if User.where(role: 'Admin').count > 1 %>
             <li>
-              <%= button_to "Delete", registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+              <%= button_to "Delete", delete_user_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete,  class: "btn"  %>
             </li>
-        </div>
-        <div class="group">
-            <h5>Change User Type</h5>
-            <% if user.id != current_user.id %>
-              <%= form_tag(change_role_pages_path, method: :patch) do %>
-                <li class="admin-box">
-                  <%= hidden_field_tag "user_ids[]", user.id %>
-                  <%= select_tag "role", options_for_select(['Volunteer', 'Non_Profit']), class: "role-select" %>
-                  <%= submit_tag "Change Role" %>
-                </li>
-              <% end %>
-            <% else %>
-              <li>Current User</li>
-            <% end %>
           <% else %>
-            <li><strong>Last Admin Account </strong></li>
+            <li><strong>Last Admin Account</strong></li>
           <% end %>
         </div>
-      <% end %>
-
+        <div class="group">
+          <h5>Change User Type</h5>
+          <% if user.id != current_user.id %>
+            <%= form_tag(change_role_pages_path, method: :patch) do %>
+              <li class="admin-box">
+                <%= hidden_field_tag "user_ids[]", user.id %>
+                <%= select_tag "role", options_for_select(['Volunteer', 'Non_Profit']), class: "role-select btn" %>
+                <%= submit_tag "Change Role",  class: "btn"  %>
+              </li>
+            <% end %>
+          <% else %>
+            <li><strong id="current-user">Current User</strong></li>
+          <% end %>
+        </div>
+      </div>
+      <div class="line"></div>
     <% end %>
-    
-  </div>
-
-
-
-<strong>Volunteers</strong>
-<div class="titles volunteer">
-  <h5>User Type</h5><h5>First Name</h5><h5>Last Name</h5><h5>Email</h5><h5>Linkedin Page</h5>
-  <h5>Background Check?</h5><h5>Contact</h5><h5>Reset Password</h5><h5>Delete Account</h5><h5>Make Admin</h5>
-  <% @users.each do |user| %>
-    <% if user.role == 'Volunteer' %>
-      <li><%= user.role %></li>
-      <li><%= user.first_name %></li>
-      <li><%= user.last_name %></li>
-      <li><%= user.email %></li>
-      <li><%= link_to "Linkedin", user.linkedin %></li>
-      <% if user.background_check == true %>
-        <li>Yes</li>
-      <% else %>
-        <li>No</li>
-      <% end %>
-      <li><%= mail_to "#{user.email}", "Contact", subject: "#{current_user.first_name}Wants to Connect!" %></li>
-      <li>
-        <%= form_with url: reset_password_pages_path, method: :post do |f| %>
-          <%= f.hidden_field :user_id, value: user.id %>
-          <%= f.submit "Reset Password", class: "btn btn-primary" %>
-        <% end %>
-      </li>
-      <li>
-        <%= button_to "Delete", user_registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-      </li>
-      <%= form_tag(change_role_pages_path, method: :patch) do %>
-        <li class="admin-box">
-          <%= hidden_field_tag "user_ids[]", user.id %>
-          <%= select_tag "role", options_for_select(['Admin', 'Non_Profit']), class: "role-select" %>
-          <%= submit_tag "Change Role" %>
-        </li>
-      <% end %>
-    <% end %> 
   <% end %>
 </div>
 
-<strong>Organizations</strong>
-<div class="titles nonprofit">
-  <h5>User Type</h5><h5>Organization</h5><h5>Email</h5>
-  <h5>Areas of Concern</h5><h5>Contact</h5><h5>Reset Password</h5><h5>Delete Account</h5><h5>Make Admin</h5>
-  <% @users.each do |nonprofit| %>
-    <% if nonprofit.role == 'Non_Profit' %>
-      <li><%= nonprofit.role %></li>
-      <li><%= nonprofit.organization_name %></li>
-      <li><%= nonprofit.email %></li>
-      <li><%= nonprofit.areas_of_concern %></li>
-      <li><%= mail_to "#{nonprofit.point_of_contact_email}", "Contact", subject: "#{current_user.first_name}Wants to Connect!" %></li>
-      <%= form_with url: reset_password_pages_path, method: :post do |f| %>
-        <%= f.hidden_field :user_id, value: nonprofit.id %>
-        <li><%= f.submit "Reset Password", class: "btn btn-primary" %></li>
-      <% end %>
-      <li>
-        <%= button_to "Delete", user_registration_path(nonprofit), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-      </li>
-      <%= form_tag(change_role_pages_path, method: :patch) do %>
-        <li class="admin-box">
-          <%= hidden_field_tag "user_ids[]", nonprofit.id %>
-          <%= select_tag "role", options_for_select(['Admin', 'Volunteer']), class: "role-select" %>
-          <%= submit_tag "Change Role" %>
-        </li>
-      <% end %>
+<strong>Volunteers</strong>
+<div class="titles user-card">
+  <% @users.each do |user| %>
+    <% if user.role == 'Volunteer' %>
+      <div class="grid-card">
+        <div class="group user-type">
+          <h5>User Type</h5>
+          <li><%= user.role %></li>
+        </div>
+        <div class="group">
+          <h5>First Name</h5>
+          <li><%= user.first_name %></li>
+        </div>
+        <div class="group">
+          <h5>Last Name</h5>
+          <li><%= user.last_name %></li>
+        </div>
+        <div class="group">
+          <h5>Email</h5>
+      <li><%= mail_to user.point_of_contact_email, "Contact" %></li>
+        </div>
+        <div class="group user-type">
+          <h5>Linkedin Page</h5>
+          <li><%= link_to "Linkedin", user.linkedin %></li>
+        </div>
+        <div class="group user-type">
+          <h5>Background Check?</h5>
+          <% if user.background_check == true %>
+            <li>Yes</li>
+          <% else %>
+            <li>No</li>
+          <% end %>
+        </div>
+        <div class="group">
+          <h5>Reset Password</h5>
+          <li>
+            <%= form_with url: reset_password_pages_path, method: :post do |f| %>
+              <%= f.hidden_field :user_id, value: user.id %>
+              <%= f.submit "Reset Password", class: "btn btn-primary",data: { confirm: "Confirm Password Reset?", turbo_confirm: "Confirm Password Reset?" } %>
+            <% end %>
+          </li>
+        </div>
+        <div class="group">
+          <h5>Delete Account</h5>
+            <li>
+              <%= button_to "Delete", delete_user_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn" %>
+            </li>
+
+        </div>
+        <div class="group">
+          <h5>Change User Type</h5>
+          <% if user.id != current_user.id %>
+            <%= form_tag(change_role_pages_path, method: :patch) do %>
+              <li class="admin-box">
+                <%= hidden_field_tag "user_ids[]", user.id %>
+                <%= select_tag "role", options_for_select(['Admin', 'Non_Profit']), class: "role-select btn" %>
+                <%= submit_tag "Change Role", class: "btn" %>
+              </li>
+            <% end %>
+          <% else %>
+            <li>Current User</li>
+          <% end %>
+        </div>
+      </div>
+      <div class="line"></div>
+    <% end %>
+  <% end %>
+</div>
+
+<strong>Non Profits</strong>
+<div class="titles user-card last-card">
+  <% @users.each do |user| %>
+    <% if user.role == 'Non_Profit' %>
+      <div class="grid-card">
+        <div class="group user-type">
+          <h5>User Type</h5>
+          <li><%= user.role %></li>
+        </div>
+        <div class="group">
+          <h5>Organization Name</h5>
+          <li><%= user.organization_name %></li>
+        </div>
+        <div class="group org-email">
+          <h5>Company Email</h5>
+          <li><%= user.email %></li>
+        </div>
+        <div class="group">
+          <h5>Email</h5>
+      <li><%= mail_to user.point_of_contact_email, "Contact" %></li>
+        </div>
+        <div class="group user-type">
+          <h5>Linkedin Page</h5>
+          <li><%= link_to "Linkedin", user.linkedin %></li>
+        </div>
+        <div class="group user-type">
+          <h5>Background Check?</h5>
+          <% if user.background_check == true %>
+            <li>Yes</li>
+          <% else %>
+            <li>No</li>
+          <% end %>
+        </div>
+        <div class="group">
+          <h5>Reset Password</h5>
+          <li>
+            <%= form_with url: reset_password_pages_path, method: :post do |f| %>
+              <%= f.hidden_field :user_id, value: user.id %>
+              <%= f.submit "Reset Password", class: "btn btn-primary",data: { confirm: "Confirm Password Reset?", turbo_confirm: "Confirm Password Reset?" } %>
+            <% end %>
+          </li>
+        </div>
+        <div class="group">
+          <h5>Delete Account</h5>
+            <li>
+              <%= button_to "Delete", delete_user_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete,class: "btn" %>
+            </li>
+
+        </div>
+        <div class="group">
+          <h5>Change User Type</h5>
+          <% if user.id != current_user.id %>
+            <%= form_tag(change_role_pages_path, method: :patch) do %>
+              <li class="admin-box">
+                <%= hidden_field_tag "user_ids[]", user.id %>
+                <%= select_tag "role", options_for_select(['Admin', 'Volunteer']), class: "role-select btn" %>
+                <%= submit_tag "Change Role", class: "btn" %>
+              </li>
+            <% end %>
+          <% else %>
+            <li>Current User</li>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="line"></div>
     <% end %>
   <% end %>
 </div>

@@ -15,8 +15,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
+    puts "Destroy Method"
     @user = User.find_by(id: params[:id])
     if @user
+      puts "User.Destroy"
       @user.destroy
       redirect_to dashboard_path, notice: 'User was successfully deleted.'
     else

@@ -50,6 +50,11 @@ class PagesController < ApplicationController
     redirect_to users_path, notice: "Password reset email sent to #{user.email}"
   end
 
+
+  def admin_registration
+    @admin_create = User.new
+  end
+
   def authenticate_admin!
     unless current_user && current_user.role == "Admin"
     end

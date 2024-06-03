@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
     delete 'logout', to: 'devise/sessions#destroy'
     get 'admin_registration', to: 'users/registrations#admin_registration', as: 'admin_registration'
+    delete '/users/:id', to: 'users/registrations#destroy', as: 'delete_user'
   end
 
   root to: 'pages#index'
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   get 'choose_user_type', to: 'pages#choose_user_type', as: 'choose_user_type'
   get '/register/:user_type', to: 'users/registrations#new', as: 'register'
 
-  delete '/users', to: 'users/registrations#destroy'
+
 
   resources :pages do
     collection do

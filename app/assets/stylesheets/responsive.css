@@ -1,26 +1,38 @@
+@media (max-width: 1660px) {
+  .titles h5 {
+    font-size: 0.7rem;
+  }
+  .org-email li {
+    font-size: 0.7rem;
+  }
+}
 @media (max-width: 1450px) {
-  div .titles .group {
+  div .user-card .grid-card {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    grid-template-columns: repeat(auto-fill, minmax(6, 1fr));
+    flex-wrap: wrap;
   }
 
-  div .admin .user-type {
+  .grid-card .group {
+    width: 25%;
+  }
+
+  div .user-type {
     display: none;
   }
+  .titles h5 {
+    font-size: 0.9rem;
+  }
 
-  .admin .group:nth-child(1),
   .admin .group:nth-child(2),
   .admin .group:nth-child(3),
-  .admin .group:nth-child(4),
-  .admin .group:nth-child(5) {
+  .admin .group:nth-child(4) {
     order: 1;
   }
-  .admin .group:nth-child(6),
+
   .admin .group:nth-child(7),
   .admin .group:nth-child(8),
-  .admin .group:nth-child(9),
-  .admin .group:nth-child(10) {
+  .admin .group:nth-child(9) {
     order: 2;
   }
 }
@@ -84,6 +96,9 @@
   }
   .registration form h1 {
     font-size: 1.3rem;
+  }
+  .grid-card .group {
+    width: 25%;
   }
 }
 
@@ -171,9 +186,13 @@
   .titles h5 {
     font-size: 0.8rem;
   }
+
+  .grid-card .group {
+    width: 33%;
+  }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 400px) {
   .links .home {
     display: none;
   }
