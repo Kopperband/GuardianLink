@@ -1,29 +1,31 @@
-<section class="registration">
-  <div class="registration-card login-card">
+<section class="registration login-page">
+  <div class="registration-card ">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
     
     <% if session[:user_type] == "Volunteer"%>
+    <h1> Volunteer Registration</h1>
+
       <%= render partial: "devise/registrations/volunteer_registration", locals: { f: f } %>
-        <div class="common-fields">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
+      <div class="common-fields">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
 
-          <%= f.label :password %><br />
-          <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-          <% end %>
-          <%= f.password_field :password, autocomplete: "new-password" %><br />
+        <%= f.label :password %><br />
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password" %><br />
 
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
-        </div>
-
-        <div class="sign-up">
+        <%= f.label :password_confirmation, "Confirm Password" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
+      </div>
+      <div class="sign-up">
         <%= f.submit "Sign up", class:'button' %>
-        </div>
+      </div>
     <% elsif session[:user_type] == "Non_Profit" %>
+    <h1> Organization Sign Up </h1> 
       <%= render partial: "devise/registrations/nonprofit_registration", locals: { f: f } %>
             <div class="common-fields">
         <%= f.label :email %><br />
@@ -40,12 +42,13 @@
       </div>
 
 
+      <div class="sign-up">
         <%= f.submit "Sign up", class:'button' %>
-    <% else %>
-    <div class="error-choose">
-    <h1>Error</h1>
-    <%= link_to "Choose User Type", choose_user_type_path %>
-    </div>
+      </div>    <% else %>
+      <div class="error-choose">
+        <h1>Error</h1>
+        <%= link_to "Choose User Type", choose_user_type_path %>
+      </div>
     <% end %>
       <!-- Non-profit fields -->
 

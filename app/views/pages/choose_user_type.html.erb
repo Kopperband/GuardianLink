@@ -1,13 +1,11 @@
-<section class="registration">
+<section class="login-page">
   <div class="login-card">
     <div class="choose-user-type">
       <h1>Choose User Type</h1>
-      <div class="links">
+      <div class="links registraion-links">
         <%= link_to "Volunteer", new_user_registration_path(user_type: "Volunteer") %>
         <%= link_to "Non Profit", new_user_registration_path(user_type: "Non_Profit") %>
-        <% if user_signed_in? && current_user.role == 'Admin' %>
-          <%= link_to "Admin", new_user_registration_path(user_type: "Admin") %>
-        <% end %>
+        
       </div>
     </div>
   </div>

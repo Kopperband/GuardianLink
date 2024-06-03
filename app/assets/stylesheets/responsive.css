@@ -1,0 +1,183 @@
+@media (max-width: 1450px) {
+  div .titles .group {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(auto-fill, minmax(6, 1fr));
+  }
+
+  div .admin .user-type {
+    display: none;
+  }
+
+  .admin .group:nth-child(1),
+  .admin .group:nth-child(2),
+  .admin .group:nth-child(3),
+  .admin .group:nth-child(4),
+  .admin .group:nth-child(5) {
+    order: 1;
+  }
+  .admin .group:nth-child(6),
+  .admin .group:nth-child(7),
+  .admin .group:nth-child(8),
+  .admin .group:nth-child(9),
+  .admin .group:nth-child(10) {
+    order: 2;
+  }
+}
+
+@media (max-width: 1225px) {
+  .non-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .main {
+    align-items: center;
+  }
+  .welcome {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+  .welcome-text {
+    margin: 10rem 0 3rem 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .welcome-text h1 {
+    width: 80%;
+  }
+  .photo {
+    width: 300px;
+    height: 300px;
+  }
+
+  .who-what-why {
+    justify-content: space-evenly;
+  }
+
+  .login-page {
+    width: 75%;
+  }
+  .login-card {
+    width: 75%;
+  }
+  #user_areas_of_concern {
+    width: 290px;
+    right: 22%;
+  }
+}
+
+@media (max-width: 1075px) {
+  .photo {
+    display: none;
+  }
+  .connecting h3 {
+    width: 80%;
+    text-align: center;
+  }
+  .registration form h1 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .logo-group .who li a {
+    display: none;
+  }
+
+  .links-top {
+    position: absolute;
+    left: 25%;
+  }
+
+  .connecting {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+  .who-what-why {
+    display: flex;
+    flex-direction: column;
+  }
+  .who-what-why .cards {
+    width: 100%;
+    margin: 0.5rem 0 0.5rem 0;
+    border-radius: 0;
+  }
+  .who-what-why .cards p {
+    width: 75%;
+  }
+  footer {
+    margin-top: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  footer .links a {
+    text-align: center;
+  }
+
+  footer .socials i {
+    font-size: 1.5rem;
+  }
+  .login-page {
+    width: 75%;
+  }
+  .login-card {
+    width: 100%;
+  }
+
+  .choose-user-type .links a {
+    font-size: 1.5rem;
+  }
+
+  .registration {
+    width: 100%;
+    align-items: center;
+  }
+  .registration form h1 {
+    font-size: 1.1rem;
+  }
+  .registration form label {
+    font-size: 0.8rem;
+  }
+  .new_user .volunteer-fields,
+  .new_user .common-fields,
+  .new_user .non-profit-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    text-align: left;
+  }
+  #user_areas_of_concern {
+    width: 200px;
+    right: 0%;
+  }
+  .registration-card .new_user br {
+    display: none;
+  }
+  .titles {
+    width: 110%;
+    border-radius: 0%;
+  }
+  .titles h5 {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .links .home {
+    display: none;
+  }
+  .registration .new_user {
+    align-items: center;
+  }
+}

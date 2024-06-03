@@ -16,19 +16,19 @@
   <section class="navbar">
   <div class="logo-group">
     <div class="logo"><%= image_tag "logo.svg" %></div>
-    <div class="who">
-    <% if current_page?(root_path) %>
-      <ul>
-      <li><%= link_to "Who What and Why", '#www' %></li>
-      </ul>
-      <% end %>
+      <div class="who">
+        <% if current_page?(root_path) %>
+          <ul>
+          <li><%= link_to "Who What and Why", '#www' %></li>
+          </ul>
+        <% end %>
+      </div>
     </div>
   </div>
-    </div>
-    <div class="links">
+    <div class="links links-top">
       <ul>
         <% if !current_user %>
-          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Home", root_path, class: "home" %></li>
         <% end %>
         <% if current_user %>
           <li><%= link_to 'Dashboard', dashboard_path %></li>

@@ -3,6 +3,7 @@
   flex-direction: column;
   height: fit-content;
   justify-content: center;
+  width: 100%;
 }
 
 .dashboard-main {
@@ -12,24 +13,20 @@
   height: auto;
   margin-top: 200px;
   align-items: center;
+  justify-content: center;
 }
 .dashboard-main h1 {
   text-align: center;
   margin-bottom: 3rem;
   font-size: 2rem;
 }
-.admin-dash {
-  display: flex;
-  flex-direction: column;
-  width: 1600px;
-  justify-content: center;
-}
 
 .titles {
-  width: 1600px;
+  width: 95%;
   border: 5px solid var(--main-blue-color);
   border-radius: 15px;
   display: grid;
+  grid-auto-flow: dense;
   justify-content: center;
 }
 .titles h5 {
@@ -40,8 +37,7 @@
 
 div .admin {
   background-color: var(--main-red-color);
-  grid-template-columns: repeat(10, 1fr);
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(10, 1fr));
 }
 div .volunteer {
   background-color: var(--main-red-color);
@@ -77,4 +73,10 @@ li a {
 .dashboard-main li button {
   background-color: var(--main-blue-color);
   color: var(--main-bg-color);
+}
+
+.line-break {
+  height: 1px;
+  width: 100%;
+  border: 3px solid black;
 }

@@ -1,51 +1,78 @@
 <strong>Admins</strong>
-<div class="admin-dash">
   <%= link_to "New Admin", admin_registration_path %><br />
   <div class="titles admin">
-    <h5>User Type</h5><h5>First Name</h5><h5>Last Name</h5><h5>Email</h5><h5>Linkedin Page</h5>
-    <h5>Background Check?</h5><h5>Contact</h5><h5>Reset Password</h5><h5>Delete Account</h5><h5>Change User Type</h5>
-
+    
     <% @users.each do |user| %>
       <% if user.role == 'Admin' %>
-        <li><%= user.role %></li>
-        <li><%= user.first_name %></li>
-        <li><%= user.last_name %></li>
-        <li><%= user.email %></li>
-        <li><%= link_to "Linkedin", user.linkedin %></li>
-        <% if user.background_check == true %>
-          <li>Yes</li>
-        <% else %>
-          <li>No</li>
-        <% end %>
-        <li><%= mail_to "#{user.email}", "Contact", subject: "#{current_user.first_name}Wants to Connect!" %></li>
-        <li>
-          <%= form_with url: reset_password_pages_path, method: :post do |f| %>
-            <%= f.hidden_field :user_id, value: user.id %>
-            <%= f.submit "Reset Password", class: "btn btn-primary" %>
+        <div class="group user-type">
+          <h5>User Type</h5>
+          <li><%= user.role %></li>
+        </div>
+        <div class="group">
+          <h5>First Name</h5>
+          <li><%= user.first_name %></li>
+        </div>
+        <div class="group">
+          <h5>Last Name</h5>
+          <li><%= user.last_name %></li>
+        </div>
+        <div class="group">
+          <h5>Email</h5>
+          <li><%= user.email %></li>
+        </div>
+        <div class="group user-type">
+          <h5>Linkedin Page</h5>
+          <li><%= link_to "Linkedin", user.linkedin %></li>
+        </div>
+        <div class="group user-type">
+          <h5>Background Check?</h5>
+          <% if user.background_check == true %>
+            <li>Yes</li>
+          <% else %>
+            <li>No</li>
           <% end %>
-        </li>
-        <% if User.where(role: 'Admin').count > 1 %>
+        </div>
+
+        <div class="group">
+          <h5>Reset Password</h5>
           <li>
-            <%= button_to "Delete", registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+            <%= form_with url: reset_password_pages_path, method: :post do |f| %>
+              <%= f.hidden_field :user_id, value: user.id %>
+              <%= f.submit "Reset Password", class: "btn btn-primary" %>
+            <% end %>
           </li>
-          <% if user.id != current_user.id %>
-            <%= form_tag(change_role_pages_path, method: :patch) do %>
-              <li class="admin-box">
-                <%= hidden_field_tag "user_ids[]", user.id %>
-                <%= select_tag "role", options_for_select(['Volunteer', 'Non_Profit']), class: "role-select" %>
-                <%= submit_tag "Change Role" %>
-              </li>
+        </div>
+        <div class="group">
+          <h5>Delete Account</h5>
+          <% if User.where(role: 'Admin').count > 1 %>
+            <li>
+              <%= button_to "Delete", registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+            </li>
+        </div>
+        <div class="group">
+            <h5>Change User Type</h5>
+            <% if user.id != current_user.id %>
+              <%= form_tag(change_role_pages_path, method: :patch) do %>
+                <li class="admin-box">
+                  <%= hidden_field_tag "user_ids[]", user.id %>
+                  <%= select_tag "role", options_for_select(['Volunteer', 'Non_Profit']), class: "role-select" %>
+                  <%= submit_tag "Change Role" %>
+                </li>
+              <% end %>
+            <% else %>
+              <li>Current User</li>
             <% end %>
           <% else %>
-            <li>Current User</li>
+            <li><strong>Last Admin Account </strong></li>
           <% end %>
-        <% else %>
-          <li><strong>Last Admin Account </strong></li>
-        <% end %>
+        </div>
       <% end %>
+
     <% end %>
+    
   </div>
-</div>
+
+
 
 <strong>Volunteers</strong>
 <div class="titles volunteer">
