@@ -2,7 +2,7 @@
 
 GuardianLink is a web application built with Ruby on Rails designed to provide a free platform to connect NGO’s and non-profit clients who require assistance in the cybersecurity realm with cybersecurity volunteers who have the skills and experience to assist. The primary goal of GuardianLink is to offer a user friendly and streamlined approach to connect these two groups together.
 
-# Wireframe Diagram Links:
+## Wireframe Diagram Links:
 
 https://www.figma.com/design/7Xa1qZQGTq2f7NNjbptRzS/Untitled?m=dev&node-id=0-1&t=VkR2tCQDTXd0nrfx-1
 
@@ -94,5 +94,3 @@ This tech stack was choses as it provides a highly flexible and scalable base ap
 - Change colour scheme or layout. personally I find that the colour scheme and layout look somewhat like an insurance company landing page.
 - Develop a private message feature allowing users to reach out to each other on the platform instead of sending emails that could be sent to spam folders.
 - As there is no user credential proof a user reviews page of some kind to build credibility of users for others to see.
-
-[ChatGPT Mockup](https://www.notion.so/ChatGPT-Mockup-44ff884f769340408b9c852b2a9c3bfc?pvs=21)
