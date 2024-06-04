@@ -18,10 +18,13 @@
   flex-direction: column;
   align-items: center;
 }
+.forgot-password-page .registration-card {
+  width: 70%;
+}
 
 .registration-card h1 {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem 0 2rem 0;
 }
 
 .registration-card label {
@@ -30,10 +33,11 @@
 }
 .new_user input {
   width: 200;
+  margin-bottom: 0.5rem;
 }
-.new_user .volunteer-fields,
-.new_user .common-fields,
-.new_user .non-profit-fields {
+.volunteer-fields,
+.common-fields,
+.non-profit-fields {
   width: 200px;
 }
 .common-fields {
@@ -71,6 +75,35 @@
   justify-content: center;
 }
 
+.registration-card .no-delete {
+  text-align: center;
+  font-size: 0.5rem;
+}
+
+.edit_user .actions {
+  display: flex;
+
+  justify-content: center;
+}
+.edit_user .width-200 .field,
+.non-profit-fields,
+.common-fields,
+.non-profit-fields,
+.volunteer-fields,
+.admin-fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.edit_user .non-profit-fields #user_areas_of_concern {
+  position: relative;
+}
+
+.edit_user .button {
+  margin: 0.5rem 0 0.5rem 0;
+}
+
 .edit-delete-button {
   display: flex;
   flex-direction: column;
@@ -81,4 +114,14 @@
 
 .width-200 {
   width: 200px;
+}
+
+.new_user .sign-up {
+  margin: 0.5rem 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new_user p {
+  font-size: 0.5rem;
 }

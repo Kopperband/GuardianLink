@@ -13,19 +13,19 @@
         </div>
         <div class="group">
           <h5>First Name</h5>
-          <li><%= user.first_name %></li>
+          <li><strong><%= user.first_name %></strong></li>
         </div>
         <div class="group">
           <h5>Last Name</h5>
-          <li><%= user.last_name %></li>
+          <li><strong><%= user.last_name %></strong></li>
         </div>
         <div class="group">
           <h5>Email</h5>
-      <li><%= mail_to user.email, "Contact" %></li>
+      <li><%= mail_to user.email, "Contact", class: "btn"  %></li>
         </div>
         <div class="group user-type">
           <h5>Linkedin Page</h5>
-          <li><%= link_to "Linkedin", user.linkedin %></li>
+          <li><%= link_to "Linkedin", user.linkedin, class: "btn"  %></li>
         </div>
         <div class="group user-type">
           <h5>Background Check?</h5>
@@ -46,7 +46,7 @@
         </div>
         <div class="group">
           <h5>Delete Account</h5>
-          <% if User.where(role: 'Admin').count > 1 %>
+          <% if User.where(role: 'Admin').count > 1  %>
             <li>
               <%= button_to "Delete", delete_user_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete,  class: "btn"  %>
             </li>
@@ -85,19 +85,19 @@
         </div>
         <div class="group">
           <h5>First Name</h5>
-          <li><%= user.first_name %></li>
+          <li><strong><%= user.first_name %></strong></li>
         </div>
         <div class="group">
           <h5>Last Name</h5>
-          <li><%= user.last_name %></li>
+          <li><strong><%= user.last_name %></strong></li>
         </div>
         <div class="group">
           <h5>Email</h5>
-      <li><%= mail_to user.point_of_contact_email, "Contact" %></li>
+      <li><%= mail_to user.point_of_contact_email, "Contact", class: "btn"  %></li>
         </div>
         <div class="group user-type">
           <h5>Linkedin Page</h5>
-          <li><%= link_to "Linkedin", user.linkedin %></li>
+          <li><%= link_to "Linkedin", user.linkedin, class: "btn"  %></li>
         </div>
         <div class="group user-type">
           <h5>Background Check?</h5>
@@ -154,19 +154,19 @@
         </div>
         <div class="group">
           <h5>Organization Name</h5>
-          <li><%= user.organization_name %></li>
+          <li><strong><%= user.organization_name %></strong></li>
         </div>
         <div class="group org-email">
           <h5>Company Email</h5>
-          <li><%= user.email %></li>
+          <li id="org-email"><strong><%= user.email %></strong></li>
         </div>
         <div class="group">
           <h5>Email</h5>
-      <li><%= mail_to user.point_of_contact_email, "Contact" %></li>
+      <li><%= mail_to user.point_of_contact_email, "Contact", class: "btn"  %></li>
         </div>
         <div class="group user-type">
           <h5>Linkedin Page</h5>
-          <li><%= link_to "Linkedin", user.linkedin %></li>
+          <li><%= link_to "Linkedin", user.linkedin, class: "btn" %></li>
         </div>
         <div class="group user-type">
           <h5>Background Check?</h5>

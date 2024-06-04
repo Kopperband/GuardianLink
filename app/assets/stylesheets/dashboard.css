@@ -107,3 +107,6 @@ li a {
 .last-card {
   margin-bottom: 2rem;
 }
+.org-email #org-email {
+  margin: 0.5rem 0 0 0;
+}

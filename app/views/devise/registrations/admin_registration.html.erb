@@ -6,22 +6,21 @@
         <h1>Admin Sign Up</h1>
         <div class="admin-fields">
         <%= f.hidden_field :role, value: 'Admin' %>
-        <%= f.label :first_name, "First Name" %><br />
-        <%= f.text_field :first_name %><br />
-        <%= f.label :last_name, "Last Name" %><br />
-        <%= f.text_field :last_name %><br />
+        <%= f.label :first_name, "First Name" %>
+        <%= f.text_field :first_name %>
+        <%= f.label :last_name, "Last Name" %>
+        <%= f.text_field :last_name %>
 
         <div class="common-fields">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
-
-          <%= f.label :password %><br />
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.label :password %>
           <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %>
-          <%= f.password_field :password, autocomplete: "new-password" %><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
 
-          <%= f.label :password_confirmation %><br />
+          <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
         </div>
 

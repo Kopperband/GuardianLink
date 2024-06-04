@@ -9,17 +9,17 @@
 
       <%= render partial: "devise/registrations/volunteer_registration", locals: { f: f } %>
       <div class="common-fields">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
-        <%= f.label :password %><br />
+        <%= f.label :password %>
         <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+          <p>(<%= @minimum_password_length %> characters minimum)</p>
         <% end %>
-        <%= f.password_field :password, autocomplete: "new-password" %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
 
-        <%= f.label :password_confirmation, "Confirm Password" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
+        <%= f.label :password_confirmation, "Confirm Password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
       <div class="sign-up">
         <%= f.submit "Sign up", class:'button' %>
@@ -29,16 +29,16 @@
       <%= render partial: "devise/registrations/nonprofit_registration", locals: { f: f } %>
             <div class="common-fields">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
-        <%= f.label :password %><br />
+        <%= f.label :password %>
         <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+          <p>(<%= @minimum_password_length %> characters minimum)</p>
         <% end %>
-        <%= f.password_field :password, autocomplete: "new-password" %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
 
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
 
 

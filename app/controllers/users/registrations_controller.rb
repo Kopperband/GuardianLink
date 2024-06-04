@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
   skip_before_action :require_no_authentication, only: %i[new create]
 
-  # POST /resource
+# POST /resource
   def create
     if current_user && current_user.role == 'Admin'
       create_admin_user
@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  # DELETE /resource
+# DELETE /resource
   def destroy
     puts "Destroy Method"
     @user = User.find_by(id: params[:id])
@@ -36,7 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     sign_in(resource_name, resource) unless current_user
   end
 
-  # If you have extra params to permit, append them to the sanitizer.
+# Sign up parameters
   def configure_sign_up_params
     permitted_params = %i[email password password_confirmation first_name last_name organization_name hours_per_week
                           background_check point_of_contact_email areas_of_concern]
@@ -44,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: permitted_params)
   end
 
-  # If you have extra params to permit, append them to the sanitizer.
+# Update parameters
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys:
     %i[role first_name last_name organization_name hours_per_week
@@ -52,16 +52,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-
+# Sets the user type
   def set_user_type
     session[:user_type] = params[:user_type] if params[:user_type].present?
     puts "#{session[:user_type]}"
   end
 
+# Creates the admin user account
   def create_admin_user
-    puts 'CREATE USER METHOD'
     @admin_create = User.new(sign_up_params)
-    puts "#{@admin_create.role}"
     self.resource = @admin_create
     if @admin_create.save
       redirect_to dashboard_path, notice: 'New admin user created successfully.'

@@ -203,3 +203,34 @@ i {
 i:hover {
   color: var(--main-red-color);
 }
+
+.sponsors {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.sponsors h2 {
+  margin-top: 2rem;
+}
+.sponsor-logos {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 2rem;
+}
+
+.sponsors img {
+  width: 150px;
+}
+
+.bottom-line {
+  background-color: var(--main-blue-color);
+  width: 100%;
+  height: 1rem;
+}
