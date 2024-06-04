@@ -3,7 +3,6 @@
   <% @users.each do |user| %>
     <% if user.role == 'Non_Profit' %>
       <div class=" non-profit-card">
-
         <div class="group">
           <h5>Organization Name</h5>
           <li><strong><%= user.organization_name %></strong></li>
@@ -14,15 +13,18 @@
         </div>
         <div class="group">
           <h5>Email</h5>
-          <li><%= mail_to user.point_of_contact_email, "Contact", class: "btn" %></li>
+          <li><%= mail_to user.point_of_contact_email, "Contact", class: "btn", subject: "#{current_user.first_name} wants to connect!", 
+          body: "Hello #{user.first_name}!\n   I believe you can help with my cybersecurity issues.\n\n Please reply to this email if you are willing to help " %></li>
+        </div>
+        <div class="group">
+          <h5>Areas Of Concern</h5>
+          <li><strong><%= user.areas_of_concern %></strong></li>
         </div>
         <div class="group ">
           <h5>Linkedin Page</h5>
           <li><%= link_to "Linkedin", user.linkedin, class: "btn" %></li>
         </div>
-
       </div>
-      
       <div class="line"></div>
     <% end %>
   <% end %>

@@ -15,10 +15,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 # DELETE /resource
   def destroy
-    puts "Destroy Method"
     @user = User.find_by(id: params[:id])
     if @user
-      puts "User.Destroy"
       @user.destroy
       redirect_to dashboard_path, notice: 'User was successfully deleted.'
     else
@@ -55,7 +53,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # Sets the user type
   def set_user_type
     session[:user_type] = params[:user_type] if params[:user_type].present?
-    puts "#{session[:user_type]}"
   end
 
 # Creates the admin user account
@@ -65,7 +62,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @admin_create.save
       redirect_to dashboard_path, notice: 'New admin user created successfully.'
     else
-      puts 'Error creating admin user'
       render :new, alert: @admin_create.errors.full_messages.join(', ')
     end
   end

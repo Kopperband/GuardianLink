@@ -63,7 +63,7 @@
         <div class="width-200">
           <div class="edit-delete-button">
             <h3>Delete Account</h3>
-            <div><%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'button' %>
+            <div><%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :destroy, class: 'button' %>
             </div>
             <% else %>
               <strong class="no-delete">Delete not available. Last Admin Account </strong><br />
@@ -71,7 +71,8 @@
           <% else %>
           
             <h3>Delete Account</h3>
-            <div class="actions"><%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'button' %>
+            <div class="actions">
+              <%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'button' %>
             </div>
             <%= link_to "Back", :back %>
           </div>

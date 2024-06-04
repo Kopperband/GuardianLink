@@ -21,7 +21,9 @@
         </div>
         <div class="group">
           <h5>Email</h5>
-      <li><%= mail_to user.email, "Contact", class: "btn"  %></li>
+      <li><%= mail_to user.email, "Contact", class: "btn", subject: "Hello fellow Admin!", 
+      body: "Greetings #{user.first_name}!\n    I am reaching out to you to tell you that you have been made an admin
+on GuardianLink!"  %></li>
         </div>
         <div class="group user-type">
           <h5>Linkedin Page</h5>
@@ -93,7 +95,8 @@
         </div>
         <div class="group">
           <h5>Email</h5>
-      <li><%= mail_to user.point_of_contact_email, "Contact", class: "btn"  %></li>
+      <li><%= mail_to user.point_of_contact_email, "Contact", class: "btn", subject: "#{current_user.first_name} wants to connect!", 
+      body: "Hello #{user.first_name}!\n   I believe you can help with my cybersecurity issues.\n\n Please reply to this email if you are willing to help "   %></li>
         </div>
         <div class="group user-type">
           <h5>Linkedin Page</h5>
@@ -162,7 +165,8 @@
         </div>
         <div class="group">
           <h5>Email</h5>
-      <li><%= mail_to user.point_of_contact_email, "Contact", class: "btn"  %></li>
+      <li><%= mail_to user.point_of_contact_email, "Contact", class: "btn",subject: "#{current_user.first_name} wants to connect!", 
+      body: "Hello,\n   My name is #{current_user.first_name} and I believe I can help you with your cybersecurity issues.\n\n Please reply to this email if you are still looking for help"   %></li>
         </div>
         <div class="group user-type">
           <h5>Linkedin Page</h5>

@@ -114,7 +114,7 @@ li a {
 .non-profit-card {
   display: grid;
   grid-auto-flow: dense;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(5, auto);
 
   width: 100%;
 }
