@@ -20,6 +20,12 @@
   margin-bottom: 3rem;
   font-size: 2rem;
 }
+.create-user-links {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
 
 .new-admin {
   text-decoration: none;
@@ -53,6 +59,10 @@
 div .user-card {
   background-color: var(--main-red-color);
   grid-template-columns: repeat(auto-fill, minmax(9, 1fr));
+}
+.section-heads {
+  margin: 2rem;
+  font-size: 2rem;
 }
 
 li {

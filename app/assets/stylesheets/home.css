@@ -118,6 +118,10 @@ section.main {
   color: var(--main-red-color);
 }
 
+.non-layout {
+  height: auto;
+}
+
 .who-what-why {
   height: 550px;
   display: flex;

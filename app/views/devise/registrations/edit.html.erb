@@ -1,70 +1,82 @@
-<section class="registration">
-  <div class="login-card">
+<section class="registration login-page">
+  <div class="registration-card ">
     <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="width-200">
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
 
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-
-      <% if current_user.role == "Volunteer" %>
-        <%= f.label :hours_per_week %><br />
-        <%= f.number_field :hours_per_week %><br />
-        <%= f.label :background_check %><br />
-        <%= f.check_box :background_check %><br />
-      <% end %>
-
-      <% if current_user.role == "Non_Profit" %>
-        <%= f.label :organization_name, "Organization Name" %><br />
-        <%= f.text_field :organization_name %><br />
-        <%= f.label :point_of_contact_email, "Point Of Contact Email" %><br />
-        <%= f.text_field :point_of_contact_email %><br />
-        <%= f.label :areas_of_concern, "Description of Concerns" %><br />
-        <%= f.text_area :areas_of_concern %><br />
-      <% end %>
-
-      <div class="field">
-        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-        <% if @minimum_password_length %>
-          <br />
-          <em><%= @minimum_password_length %> characters minimum</em>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
       </div>
+      <% if current_user.role == "Volunteer" %>
+        <div class="width-200">
+          <%= f.label :hours_per_week %><br />
+          <%= f.number_field :hours_per_week %><br />
+          <%= f.label :background_check %><br />
+          <%= f.check_box :background_check %><br />
+        </div>
+      <% end %>
+      
 
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
+      <% if current_user.role == "Non_Profit" %>
+        <div class="non-profit-fields">
+          <%= f.label :organization_name, "Organization Name" %><br />
+          <%= f.text_field :organization_name %><br />
+          <%= f.label :point_of_contact_email, "Point Of Contact Email" %><br />
+          <%= f.text_field :point_of_contact_email %><br />
+          <%= f.label :areas_of_concern, "Description of Concerns" %><br />
+          <%= f.text_area :areas_of_concern %><br />
+          </div>
+      <% end %>
+      <div class="width-200">
+        <div class="field">
+          <%= f.label :password %> <i>(Leave blank if no change)</i><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+          <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
 
-      <div class="field">
-        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-        <%= f.password_field :current_password, autocomplete: "current-password" %>
-      </div>
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
 
-      <div class="actions">
-        <%= f.submit "Update", class: 'button' %>
+        <div class="field">
+          <%= f.label :current_password %> <i>(Provide password to confim changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Update", class: 'button ' %>
+        </div>
       </div>
     <% end %>
 
 
     <% if current_user.role =='Admin' %>
       <% if User.where(role: 'Admin').count > 1 %>
-        <h3>Delete Account</h3>
-        <div><%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'button' %></div>
-      <% else %>
-        <strong>Cannot delete account there needs to be a minimum of one admin account active at all times </strong>
-      <% end %>
-    <% else %>
-    <h3>Delete Account</h3>
-      <div><%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'button' %></div>
+        <div class="width-200">
+          <div class="edit-delete-button">
+            <h3>Delete Account</h3>
+            <div><%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'button' %>
+            </div>
+            <% else %>
+              <strong>Cannot delete account there needs to be a minimum of one admin account active at all times </strong>
+            <% end %>
+          <% else %>
+          
+            <h3>Delete Account</h3>
+            <div><%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'button' %>
+            </div>
+          </div>
+        </div>
     <% end %>
       
     <%= link_to "Back", :back %>

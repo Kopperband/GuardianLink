@@ -100,6 +100,9 @@
   .grid-card .group {
     width: 25%;
   }
+  .field i {
+    font-size: 0.6rem;
+  }
 }
 
 @media (max-width: 800px) {
@@ -165,7 +168,8 @@
   }
   .new_user .volunteer-fields,
   .new_user .common-fields,
-  .new_user .non-profit-fields {
+  .new_user .non-profit-fields,
+  .new_user .admin-fields {
     display: flex;
     flex-direction: column;
     align-items: left;
