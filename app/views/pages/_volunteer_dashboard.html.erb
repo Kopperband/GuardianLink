@@ -2,65 +2,25 @@
 <div class="titles user-card last-card">
   <% @users.each do |user| %>
     <% if user.role == 'Non_Profit' %>
-      <div class="grid-card">
-        <div class="group user-type">
-          <h5>User Type</h5>
-          <li><%= user.role %></li>
-        </div>
+      <div class=" non-profit-card">
+
         <div class="group">
           <h5>Organization Name</h5>
-          <li><%= user.organization_name %></li>
+          <li><strong><%= user.organization_name %></strong></li>
         </div>
         <div class="group org-email">
           <h5>Company Email</h5>
-          <li><%= user.email %></li>
+          <li><strong><%= user.email %></strong></li>
         </div>
         <div class="group">
           <h5>Email</h5>
-      <li><%= mail_to user.point_of_contact_email, "Contact" %></li>
+          <li><%= mail_to user.point_of_contact_email, "Contact", class: "btn" %></li>
         </div>
-        <div class="group user-type">
+        <div class="group ">
           <h5>Linkedin Page</h5>
-          <li><%= link_to "Linkedin", user.linkedin %></li>
+          <li><%= link_to "Linkedin", user.linkedin, class: "btn" %></li>
         </div>
-        <div class="group user-type">
-          <h5>Background Check?</h5>
-          <% if user.background_check == true %>
-            <li>Yes</li>
-          <% else %>
-            <li>No</li>
-          <% end %>
-        </div>
-        <div class="group">
-          <h5>Reset Password</h5>
-          <li>
-            <%= form_with url: reset_password_pages_path, method: :post do |f| %>
-              <%= f.hidden_field :user_id, value: user.id %>
-              <%= f.submit "Reset Password", class: "btn btn-primary",data: { confirm: "Confirm Password Reset?", turbo_confirm: "Confirm Password Reset?" } %>
-            <% end %>
-          </li>
-        </div>
-        <div class="group">
-          <h5>Delete Account</h5>
-            <li>
-              <%= button_to "Delete", delete_user_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete,class: "btn" %>
-            </li>
 
-        </div>
-        <div class="group">
-          <h5>Change User Type</h5>
-          <% if user.id != current_user.id %>
-            <%= form_tag(change_role_pages_path, method: :patch) do %>
-              <li class="admin-box">
-                <%= hidden_field_tag "user_ids[]", user.id %>
-                <%= select_tag "role", options_for_select(['Admin', 'Volunteer']), class: "role-select btn" %>
-                <%= submit_tag "Change Role", class: "btn" %>
-              </li>
-            <% end %>
-          <% else %>
-            <li>Current User</li>
-          <% end %>
-        </div>
       </div>
       
       <div class="line"></div>

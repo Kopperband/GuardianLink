@@ -90,7 +90,7 @@ li a {
 }
 
 #current-user {
-  color: rgb(67, 227, 67);
+  color: orange;
 }
 
 .group .btn {
@@ -109,4 +109,19 @@ li a {
 }
 .org-email #org-email {
   margin: 0.5rem 0 0 0;
+}
+
+.non-profit-card {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(4, auto);
+
+  width: 100%;
+}
+
+.volunteer-card {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(5, auto);
+  width: 100%;
 }
