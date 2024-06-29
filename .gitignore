@@ -33,6 +33,10 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials.yml.enc
+/config/credentials
+/config/credentials/production.key
+/config/credentials/production.yml.enc
 
 /public/packs
 /public/packs-test
@@ -40,3 +44,5 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+
